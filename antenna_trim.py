@@ -54,9 +54,9 @@ def unit_convert(value: float, to_unit: str, precision: str=None) -> str:
         decimal_inches = (value - feet) * 12
         if feet > 0:
             if decimal_inches == 0:
-                return f'$${feet}\\, ft$$'
+                return f'$${feet:,}\\, ft$$'
             else:
-                return f'$${feet}\\, ft\\quad{fractional_inches(decimal_inches, precision)}\\,in$$'
+                return f'$${feet:,}\\, ft\\quad{fractional_inches(decimal_inches, precision)}\\,in$$'
         else:
             if decimal_inches == 0:
                 return ''
