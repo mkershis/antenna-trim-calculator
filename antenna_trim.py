@@ -98,7 +98,6 @@ if calculate & ((current_freq is not None) & (desired_freq is not None)):
         elif current_freq > desired_freq:
             st.write('Antenna is too short. Increase total length by:')
 
-        # st.metric(label = 'Full Trim', value = full_trim, border = True, label_visibility = 'collapsed')
         st.markdown(full_trim)
 
         if current_freq < desired_freq:
@@ -106,7 +105,6 @@ if calculate & ((current_freq is not None) & (desired_freq is not None)):
         elif current_freq > desired_freq:
             st.write('or extend each side of the dipole by:')
 
-        # st.metric(label = 'Half Trim', value = half_trim, border = True, label_visibility = 'collapsed')
         st.markdown(half_trim)
 
 elif calculate & ((current_freq is None) | (desired_freq is None)):
