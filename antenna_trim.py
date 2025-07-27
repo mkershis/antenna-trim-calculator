@@ -71,8 +71,8 @@ intro_text = open('readme.md').read()
 
 st.markdown(intro_text)
 
-current_freq = st.number_input('Current resonant frequency (MHz)', format = '%0.3f', step = 1.0)
-desired_freq = st.number_input('Desired resonant frequency (MHz)', format = '%0.3f', step = 1.0)
+current_freq = st.number_input('Current resonant frequency (MHz)', format = '%0.3f', step = 0.001, min_value = 0.001, value = None, placeholder=None)
+desired_freq = st.number_input('Desired resonant frequency (MHz)', format = '%0.3f', step = 0.001, min_value = 0.001, value = None, placeholder=None)
 
 to_unit = st.radio(label = 'Select preferred display units', options = ['feet/inches','centimeters'], horizontal = True)
 if to_unit == 'feet/inches':
@@ -81,7 +81,7 @@ else:
     precision = None
 calculate = st.button('Run Calculation')
 
-if calculate & ((current_freq > 0) & (desired_freq > 0)):
+if calculate & ((current_freq is not None) & (desired_freq is not None)):
     st.divider()
 
     diff_feet = abs((468 / current_freq) - (468 / desired_freq))
@@ -109,5 +109,5 @@ if calculate & ((current_freq > 0) & (desired_freq > 0)):
         # st.metric(label = 'Half Trim', value = half_trim, border = True, label_visibility = 'collapsed')
         st.markdown(half_trim)
 
-elif calculate & ((current_freq == 0) | (desired_freq == 0)):
+elif calculate & ((current_freq is None) | (desired_freq is None)):
     st.markdown(':red[Error: Both frequencies must be greater than zero.]')
